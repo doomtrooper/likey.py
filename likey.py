@@ -21,11 +21,13 @@ token=input('Please enter your FB access token (https://developers.facebook.com/
 
 
 username=input("Enter user name :")
-
+"""
 if username!="me":
 	httpser.request('GET','/'+username+'?fileds=id&access_token='+token)
 	idresp=json.loads(httpser.getresponse().read().decode("utf-8"))["id"]
-
+else:
+	idresp='me'
+"""
 photype='/uploaded'
 try:
 	mainreq='/v2.1/'+str(idresp)+'/photos'+photype+'?fields=source,likes.limit(100).summary(true)&limit=100&access_token='+token
