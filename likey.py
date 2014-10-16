@@ -44,7 +44,9 @@ def _getkey(item):
 	return item["count"]
 resp=sorted(resp,reverse=True,key=_getkey)[:5]
 
-os.system('mkdir '+username)
+if not os.path.exists(username):
+	os.makedirs(username)
+
 for j,i in enumerate(resp):
    split=urllib.parse.urlsplit(i["source"])
    filename='./'+username+'/'+str(j+1)+'_'+str(i["count"])+"."+split.path.split(".")[-1]
