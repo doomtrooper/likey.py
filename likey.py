@@ -14,19 +14,15 @@ import urllib.parse
 import os
 import urllib.request
 
-
 httpser=http.client.HTTPSConnection('graph.facebook.com')
+print("Check the User Name of the FB page.")
+username=input("Enter User Name of the FB page :")
 
 token=input('Please enter your FB access token (https://developers.facebook.com/tools/explorer/) :')
 
+httpser.request('GET','/'+username+'?fileds=id&access_token='+token)
+idresp=json.loads(httpser.getresponse().read().decode("utf-8"))["id"]
 
-username=input("Enter user name :")
-
-if username!="me":
-	httpser.request('GET','/'+username+'?fileds=id&access_token='+token)
-	idresp=json.loads(httpser.getresponse().read().decode("utf-8"))["id"]
-else:
-	idresp='me'
 
 photype='/uploaded'
 try:
